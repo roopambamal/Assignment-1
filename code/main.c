@@ -127,9 +127,15 @@ int main(int argc, char *argv[]) {
 
 		printf("Process %d: Starting up.\n", world_rank);
 		// Calculate amount of work
-		int work_range = (int) ((255 + 1) / world_size);
-		//int work_rest = (int) (255 % world_size);
-		int a = -128 + (work_range * (world_rank)), b = (a + work_range - 1); // Create a range offset from -128 to 127. Process (1 / 3) -> -128 - -42
+		int work_range = (int) (256 / world_size);
+		int work_rest = (int) (256 % world_size); // World size always above 0 (or program doesn't run lol)
+		int a = -128 + (work_range * world_rank), b = (a + work_range - 1); // Create a range offset from -128 to 127. Process (1 / 3) -> -128 - -42
+
+		// Correction for off-by-n
+		//printf("p: %d | 2p: %d\n", (work_rest) + (work_rest * world_rank), 2 * ((work_rest) + (work_rest * world_rank)));
+		if ((2 * (work_rest + (work_rest * world_rank)) >= world_size)) {
+			b++;
+		}
 
 		double start, stop;
 		MPI_Barrier(MPI_COMM_WORLD); // Sync
