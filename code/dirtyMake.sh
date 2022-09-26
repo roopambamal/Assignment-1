@@ -6,11 +6,11 @@ do
 	then
 		mpicc mainMPI.c crackme.o -o mainMPI
 
-	# elif [ ${!i} = "-premake" ];
-	# then 
-	# 	gcc -S crackme.c -o crackme.s
-	# 	gcc -c crackme.s -o crackme.o
-	# 	rm crackme.s
+	elif [ ${!i} = "-premake" ];
+	then 
+	 	gcc -S crackme.c -o crackme.s
+	 	gcc -c crackme.s -o crackme.o
+	 	rm crackme.s
 
 	elif [ ${!i} = "-clean" ];
 	then 

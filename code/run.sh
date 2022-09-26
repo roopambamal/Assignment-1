@@ -9,3 +9,4 @@ fi
 sh generate_hosts.sh $2
 
 mpirun -np $1 -hostfile hostfile $3 $4
+
