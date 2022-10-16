@@ -1,3 +1,5 @@
+PASS
+
 ### CrackedMe Solution
 This is the solution to Assignment 1 in INF-3201 by Jonathan L. Claudius
 The assignment is about implementing a solution to CrackMe, and add a parallel running component using MPI.
